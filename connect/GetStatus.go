@@ -10,7 +10,6 @@ func (c *Connect) GetStatus() string {
 	c.Send(data)
 	c.Send([]byte{0x00})
 	ret := c.ReadAll()
-	c.Close()
 	// 数据包长度
 	VarIntInstance.Decode(ret)
 	// packetID

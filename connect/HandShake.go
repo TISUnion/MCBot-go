@@ -9,8 +9,8 @@ import (
 func (c *Connect) HandShake(NextState int) []byte {
 	var buf bytes.Buffer
 	buf.Write([]byte{0x00, 0x00})
-	if NextState == 1 {
-		VarIntInstance.Encode(ProtocolVersion, &buf)
+	if NextState == 2 {
+		VarIntInstance.Encode(c.GetProtocolVersion(), &buf)
 	}
 	StringInstance.Encode(c.Host, &buf)
 	UnsignedShortInstance.Encode(c.Port, &buf)
