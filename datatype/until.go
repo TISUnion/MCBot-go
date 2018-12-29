@@ -38,3 +38,7 @@ func AddLength(data []byte) []byte {
 	res = VarIntInstance.Encode_(len(data))
 	return append(res, data...)
 }
+
+func ReadLoginResponse() {
+
+}
