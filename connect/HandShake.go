@@ -1,8 +1,9 @@
 package connect
 
 import (
-	. "MCBot-go/datatype"
 	"bytes"
+
+	. "github.com/TISUnion/MCBot-go/datatype"
 )
 
 //对服务器握手发送数据进行封装

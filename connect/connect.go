@@ -1,9 +1,10 @@
 package connect
 
 import (
-	. "MCBot-go/datatype"
 	"bytes"
 	"net"
+
+	. "github.com/TISUnion/MCBot-go/datatype"
 
 	"github.com/tidwall/gjson"
 )

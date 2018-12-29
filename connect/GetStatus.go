@@ -1,7 +1,7 @@
 package connect
 
 import (
-	. "MCBot-go/datatype"
+	. "github.com/TISUnion/MCBot-go/datatype"
 )
 
 //获取服务器信息
