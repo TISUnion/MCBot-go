@@ -38,6 +38,20 @@ func (*VarInt) Decode(bs *bytes.Buffer) int {
 	return res
 }
 
+func (*VarInt) DecodeByte(bs *[]byte) int {
+	var res int = 0
+	var bytes_encountered byte = 0
+	var read, value byte
+	for ok := true; ok; ok = (read&0x80 != 0) {
+		read = (*bs)[0]
+		*bs = (*bs)[1:]
+		value = read & 0x7F
+		res |= int(value) << (7 * bytes_encountered)
+		bytes_encountered += 1
+	}
+	return res
+}
+
 var VarIntInstance *VarInt
 
 func init() {
