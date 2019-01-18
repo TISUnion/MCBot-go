@@ -29,3 +29,18 @@
 ```
 
 - 启动程序，windows双击example.exe即可；linux运行example可执行文件
+
+## 使用方法
+
+使用connect.NewConnect方法可获得一个连接对象，如果isOnline为true则表示为正版登陆，argv需要传入2个参数，账号以及密码，否则表示为正盗版登陆，只需要传入一个参数，玩家的昵称。
+``` golang
+connect.NewConnect(host string, port int, isOnline bool, argv ...string) *connect.Connect
+```
+创建完*connect.Connect后，如果创建失败则会返回nil，然后要启动连接，使用start函数即可启动，值得一提的是，start函数是一个死循环函数，如果需要多玩家管理，则需要自行设计使用go程。
+```golang
+if c != nil {
+    // go c.Start()  
+    c.Start()
+    defer c.Close()
+}
+```
