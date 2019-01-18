@@ -42,6 +42,9 @@ func (c *Connect) Send(bs []byte) {
 
 //处理获取的数据包
 func (c *Connect) DealPacket(pk *Packet) {
+	if !c.IsOnline && (pk.Id == 0x01) {
+		return
+	}
 	c.Send(handletype.DistinguishPacket(pk, c.player))
 }
 

@@ -29,7 +29,12 @@ func main() {
 	var g sync.WaitGroup
 	CfgArr := Cfg.Sections()
 	//根据配置文件开启连接
-	for _, section := range CfgArr {
+	for k, section := range CfgArr {
+		//跳过主域
+		if k == 0 {
+			continue
+		}
+		//检查是否有游戏正版认证参数
 		if section.HasKey("online-mode") {
 			host := section.Key("host").String()
 			port, _ := section.Key("port").Int()
@@ -38,6 +43,8 @@ func main() {
 				continue
 			}
 			onlineMode, _ := section.Key("online-mode").Bool()
+			var c *connect.Connect
+			//如果是正版就进行正版登陆
 			if onlineMode {
 				account := section.Key("account").String()
 				password := section.Key("password").String()
@@ -45,24 +52,20 @@ func main() {
 					fmt.Println(section.Name, "：参数错误")
 					continue
 				}
-				c := connectOnline(host, port, account, password)
-				if c != nil {
-					g.Add(1)
-					go c.Start()
-					defer c.Close()
-				}
-			} else {
+				c = connectOnline(host, port, account, password)
+
+			} else { //不是则通过昵称登陆
 				username := section.Key("username").String()
 				if username == "" {
 					fmt.Println(section.Name, "：参数错误")
 					continue
 				}
-				c := connectOffline(host, port, username)
-				if c != nil {
-					g.Add(1)
-					go c.Start()
-					defer c.Close()
-				}
+				c = connectOffline(host, port, username)
+			}
+			if c != nil {
+				g.Add(1)
+				go c.Start()
+				defer c.Close()
 			}
 
 		} else {

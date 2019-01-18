@@ -2,7 +2,6 @@ package handletype
 
 import (
 	"bytes"
-	"fmt"
 
 	. "github.com/TISUnion/MCBot-go/datatype"
 )
@@ -16,6 +15,6 @@ func (*PlayerMessage) Handle(pk *Packet, pl *Player) []byte {
 	name := StringInstance.Decode(buf)
 	pl.UUID = uuid
 	pl.Username = name
-	fmt.Println("登陆成功：UUID：", string(uuid), ", 用户名：", string(name))
+	// fmt.Println("登陆成功：UUID：", string(uuid), ", 用户名：", string(name))
 	return []byte{}
 }

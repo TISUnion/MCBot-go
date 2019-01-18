@@ -2,6 +2,7 @@ package handletype
 
 import (
 	"bytes"
+	"fmt"
 
 	. "github.com/TISUnion/MCBot-go/datatype"
 )
@@ -16,6 +17,7 @@ func (*Authentication) Handle(pk *Packet, pl *Player) []byte {
 	//获取rsa参数
 	publicKey := StringInstance.Decode(buf)
 	verifyToken := StringInstance.Decode(buf)
+	fmt.Println(publicKey, verifyToken)
 	//使用服务器的公钥加密参数
 	secret_verify_token, ok := RsaEncrypt([]byte(publicKey), []byte(verifyToken))
 	if !ok {
