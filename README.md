@@ -3,7 +3,17 @@
 模拟MC登录协议
 
 ## 介绍
+
+Minecraft版本 1.13.2
+
+参考项目：https://github.com/ammaraskar/pyCraft
+
 此程序是一个简易的模拟MC登录库，并不是登陆管理程序，相关的多用户模拟登陆需要额外编写goroutine来实现，但是提供一个栗子程序。
+
+之后无重大BUG将不在升级改库
+
+如果想深度开发，并且熟悉python，还是推荐pyCraft
+
 
 ## 快速开始
 
